@@ -22,6 +22,7 @@ func handleIndex(c *gin.Context) {
 		"one_region":                 fmt.Sprintf("%s/regions/region_code", appURL),
 		"one_region_with_districts":  fmt.Sprintf("%s/regions/region_code?embed=districts", appURL),
 		"search_regions":             fmt.Sprintf("%s/search/regions/:keyword", appURL),
+		"search_districts":             fmt.Sprintf("%s/search/districts/:keyword", appURL),
 	},
 	)
 }

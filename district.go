@@ -20,4 +20,7 @@ type DistrictService interface {
 
 	// Returns a slice of all districts whose region code matches code
 	GetDistrictsByRegion(regionCode string) ([]*District, error)
+
+	// SearchDistrict returns districts whose name matches keyword
+	SearchDistrict(keyword string) ([]Region, error)
 }

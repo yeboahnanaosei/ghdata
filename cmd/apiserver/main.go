@@ -70,6 +70,10 @@ func setup() (*gin.Engine, error) {
 
 	// Setup district routes
 	router.GET("districts", getAllDistricts)
+
+	// Setup search routes
+	router.GET("search/regions/:query", searchRegion)
+	router.GET("search/districts/:query", searchDistrict)
 	return router, nil
 }
 

@@ -51,3 +51,30 @@ func (d *DistrictService) GetDistrictsByRegion(regionCode string) ([]*ghdata.Dis
 	defer rows.Close()
 	return districts, nil
 }
+
+// SearchDistrict returns ghdata.District whose name or code matches keyword
+func (d *DistrictService) SearchDistrict(keyword string) ([]ghdata.District, error) {
+	var districts []ghdata.District
+
+	rows, err := d.DB.Query(
+		"SELECT name, capital, level FROM districts WHERE name LIKE ? ORDER BY name",
+		"%"+keyword+"%",
+		"%"+keyword+"%",
+	)
+
+	if err != nil {
+		return districts, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		d := ghdata.District{}
+		err := rows.Scan(&d.Name, &d.Capital, &d.Level)
+		if err != nil {
+			return districts, err
+		}
+		districts = append(districts, d)
+	}
+
+	return districts, nil
+}
