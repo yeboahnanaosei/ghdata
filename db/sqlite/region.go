@@ -44,8 +44,8 @@ func (r *RegionService) GetAllRegions() ([]*ghdata.Region, error) {
 	return regions, nil
 }
 
-// Search returns ghdata.Regions whose name or code matches keyword
-func (r *RegionService) Search(keyword string) ([]ghdata.Region, error) {
+// SearchRegion returns ghdata.Regions whose name or code matches keyword
+func (r *RegionService) SearchRegion(keyword string) ([]ghdata.Region, error) {
 	var regions []ghdata.Region
 
 	rows, err := r.DB.Query(
