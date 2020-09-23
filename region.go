@@ -10,6 +10,12 @@ type Region struct {
 
 // RegionService exposes an interface to handle and manipulate regions
 type RegionService interface {
-	GetOneRegion(code string) (Region, error) // Region returns one region whose code matches code
-	GetAllRegions() ([]Region, error)   // GetAllRegions returns a slice of all regions
+	// Region returns one region whose code matches code
+	GetOneRegion(code string) (Region, error)
+
+	// GetAllRegions returns a slice of all regions
+	GetAllRegions() ([]Region, error)
+
+	// SearchRegions returns regions whose name or code matches keyword
+	SearchRegion(keyword string) ([]Region, error)
 }

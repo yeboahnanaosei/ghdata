@@ -18,9 +18,10 @@ func handleIndex(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"all_regions":                fmt.Sprintf("%s/regions", appURL),
 		"all_regions_with_districts": fmt.Sprintf("%s/regions?embed=districts", appURL),
+		"all_districts":              fmt.Sprintf("%s/districts", appURL),
 		"one_region":                 fmt.Sprintf("%s/regions/region_code", appURL),
 		"one_region_with_districts":  fmt.Sprintf("%s/regions/region_code?embed=districts", appURL),
-		"all_districts":              fmt.Sprintf("%s/districts", appURL),
+		"search_regions":             fmt.Sprintf("%s/search/regions/:keyword", appURL),
 	},
 	)
 }
