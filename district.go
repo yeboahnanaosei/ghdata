@@ -6,7 +6,7 @@ type District struct {
 	Name       string  `json:"name"`
 	Capital    string  `json:"capital"`
 	Level      string  `json:"level"`
-	RegionCode string  `json:"region_code,omitempty"`
+	RegionCode string  `json:"regionCode,omitempty"`
 	Region     *Region `json:"region,omitempty"`
 }
 
