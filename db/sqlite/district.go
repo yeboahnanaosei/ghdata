@@ -86,7 +86,7 @@ func (d *DistrictService) SearchDistrict(keyword string) ([]ghdata.District, err
 	var districts []ghdata.District
 
 	rows, err := d.DB.Query(
-		"SELECT name, capital, level, region FROM districts WHERE name LIKE ? ORDER BY name",
+		"SELECT name, capital, level, region FROM districts WHERE name LIKE ? OR capital LIKE ? ORDER BY name",
 		"%"+keyword+"%",
 		"%"+keyword+"%",
 	)
