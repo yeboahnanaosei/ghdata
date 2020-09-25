@@ -2,6 +2,8 @@ package sqlite
 
 import (
 	"database/sql"
+	"fmt"
+	"strings"
 
 	"github.com/yeboahnanaosei/ghdata"
 )
@@ -49,6 +51,33 @@ func (d *DistrictService) GetDistrictsByRegion(regionCode string) ([]*ghdata.Dis
 		districts = append(districts, &d)
 	}
 	defer rows.Close()
+	return districts, nil
+}
+
+// GetDistrictsByLevels returns all districts whose level matches any one of the
+// levels in the levels parameter
+func (d *DistrictService) GetDistrictsByLevels(levels []string) ([]ghdata.District, error) {
+	var districts []ghdata.District
+
+	query := "SELECT name, capital, level FROM districts WHERE level IN ("
+	for _, level := range levels {
+		query += fmt.Sprintf(`'%s',`, level)
+	}
+	query = strings.TrimSuffix(query, ",")
+	query += ")"
+
+	rows, err := d.DB.Query(query)
+	if err != nil {
+		return districts, nil
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		d := ghdata.District{}
+		rows.Scan(&d.Name, &d.Capital, &d.Level)
+		districts = append(districts, d)
+	}
+
 	return districts, nil
 }
 
