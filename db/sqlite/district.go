@@ -98,7 +98,7 @@ func (d *DistrictService) SearchDistrict(keyword string) ([]ghdata.District, err
 
 	for rows.Next() {
 		d := ghdata.District{}
-		err := rows.Scan(&d.Name, &d.Capital, &d.Level)
+		err := rows.Scan(&d.Name, &d.Capital, &d.Level, &d.RegionCode)
 		if err != nil {
 			return districts, err
 		}
