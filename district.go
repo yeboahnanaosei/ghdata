@@ -1,5 +1,7 @@
 package ghdata
 
+import "database/sql"
+
 // District represents one district
 type District struct {
 	ID         string  `json:"id,omitempty"`
@@ -26,4 +28,7 @@ type DistrictService interface {
 
 	// SearchDistrict returns districts whose name matches keyword
 	SearchDistrict(keyword string) ([]Region, error)
+
+	// CustomQuery allows user land to pass their custom query
+	CustomQuery(query string) (*sql.Rows, error)
 }

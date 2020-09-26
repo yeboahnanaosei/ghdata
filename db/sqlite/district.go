@@ -107,3 +107,8 @@ func (d *DistrictService) SearchDistrict(keyword string) ([]ghdata.District, err
 
 	return districts, nil
 }
+
+// CustomQuery allows user land to pass their custom query
+func (d *DistrictService) CustomQuery(query string) (*sql.Rows, error) {
+	return d.DB.Query(query)
+}
