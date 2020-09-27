@@ -5,7 +5,7 @@ type Region struct {
 	Code      string      `json:"code"`
 	Name      string      `json:"name"`
 	Capital   string      `json:"capital"`
-	Districts []*District `json:"districts,omitempty"`
+	Districts []District `json:"districts,omitempty"`
 }
 
 // RegionService exposes an interface to handle and manipulate regions

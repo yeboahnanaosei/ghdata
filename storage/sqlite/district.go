@@ -35,8 +35,8 @@ func (d *DistrictService) GetAllDistricts() ([]ghdata.District, error) {
 }
 
 // GetDistrictsByRegion returns all districts whose region = regionCode
-func (d *DistrictService) GetDistrictsByRegion(regionCode string) ([]*ghdata.District, error) {
-	var districts []*ghdata.District
+func (d *DistrictService) GetDistrictsByRegion(regionCode string) ([]ghdata.District, error) {
+	var districts []ghdata.District
 	rows, err := d.DB.Query("SELECT name, capital, level FROM districts WHERE region = ? ORDER BY name", regionCode)
 	if err != nil {
 		return districts, err
@@ -48,7 +48,7 @@ func (d *DistrictService) GetDistrictsByRegion(regionCode string) ([]*ghdata.Dis
 		if err != nil {
 			return districts, err
 		}
-		districts = append(districts, &d)
+		districts = append(districts, d)
 	}
 	defer rows.Close()
 	return districts, nil
