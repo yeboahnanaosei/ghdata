@@ -21,7 +21,7 @@ type DistrictService interface {
 	GetAllDistricts() []District
 
 	// Returns a slice of all districts whose region code matches code
-	GetDistrictsByRegion(regionCode string) ([]*District, error)
+	GetDistrictsByRegion(regionCode string) ([]District, error)
 
 	// Get districts by level
 	GetDistrictsByLevels(levels []string) ([]District, error)
