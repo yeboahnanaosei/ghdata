@@ -15,7 +15,7 @@ type RegionService struct {
 func (r *RegionService) GetOneRegion(code string) (ghdata.Region, error) {
 	var region ghdata.Region
 	row := r.DB.QueryRow("SELECT * FROM regions WHERE code = ?", code)
-	err := row.Scan(&region.Code, &region.Name, &region.Capital)
+	err := row.Scan(&region.ID, &region.Code, &region.Name, &region.Capital, &region.Slug)
 	if err != nil {
 		return region, err
 	}
@@ -33,7 +33,7 @@ func (r *RegionService) GetAllRegions() ([]*ghdata.Region, error) {
 
 	for rows.Next() {
 		region := ghdata.Region{}
-		err := rows.Scan(&region.Code, &region.Name, &region.Capital)
+		err := rows.Scan(&region.ID, &region.Code, &region.Name, &region.Capital, &region.Slug)
 		if err != nil {
 			return regions, err
 		}
@@ -61,7 +61,7 @@ func (r *RegionService) SearchRegion(keyword string) ([]ghdata.Region, error) {
 
 	for rows.Next() {
 		r := ghdata.Region{}
-		err := rows.Scan(&r.Code, &r.Name, &r.Capital)
+		err := rows.Scan(&r.ID, &r.Code, &r.Name, &r.Capital, &r.Slug)
 		if err != nil {
 			return regions, err
 		}

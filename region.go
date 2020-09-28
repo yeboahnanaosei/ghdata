@@ -2,9 +2,11 @@ package ghdata
 
 // Region models one region
 type Region struct {
-	Code      string      `json:"code"`
-	Name      string      `json:"name"`
-	Capital   string      `json:"capital"`
+	ID        int		`json:"-"`
+	Code      string     `json:"abbr"`
+	Name      string     `json:"name"`
+	Capital   string     `json:"capital"`
+	Slug      string     `json:"slug"`
 	Districts []District `json:"districts,omitempty"`
 }
 
