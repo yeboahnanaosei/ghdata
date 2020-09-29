@@ -85,7 +85,7 @@ func (s *ConstituencyService) GetConstituenciesByRegions(regionCodes []string) (
 		queryString += fmt.Sprintf(`'%s',`, regionCode)
 	}
 	queryString = strings.TrimSuffix(queryString, ",")
-	finalQuery := fmt.Sprintf("SELECT * FROM constituencies WHERE region IN (%s)", queryString)
+	finalQuery := fmt.Sprintf("SELECT * FROM constituencies WHERE region IN (%s) ORDER BY region", queryString)
 
 	rows, err := s.DB.Query(finalQuery)
 	if err == sql.ErrNoRows {
