@@ -3,7 +3,7 @@ package ghdata
 // Region models one region
 type Region struct {
 	ID        int		`json:"-"`
-	Code      string     `json:"abbr"`
+	Code      string     `json:"regionCode"`
 	Name      string     `json:"name"`
 	Capital   string     `json:"capital"`
 	Slug      string     `json:"slug"`
