@@ -18,7 +18,7 @@ type ConstituencyService struct {
 func (s *ConstituencyService) GetAllConstituencies() ([]ghdata.Constituency, error) {
 	constituencies := []ghdata.Constituency{}
 
-	rows, err := s.DB.Query("SELECT * FROM constituencies")
+	rows, err := s.DB.Query("SELECT * FROM constituencies ORDER BY region")
 	if err == sql.ErrNoRows {
 		return constituencies, nil
 	}
